@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Utils;
+
 public class SpawnObject : MonoSingleton<SpawnObject>
 {
     private string pooledObjectId;
@@ -9,6 +10,7 @@ public class SpawnObject : MonoSingleton<SpawnObject>
     private ObjectPool objectPool;
 
     private float currentX = 0;
+
     void Start()
     {
         objectPool = ObjectPool.Instance;
@@ -41,9 +43,5 @@ public class SpawnObject : MonoSingleton<SpawnObject>
 
     private void OnGUI()
     {
-        if (GUILayout.Button("Spawn Object"))
-        {
-            Spawn(pooledObjectId);
-        }
     }
 }
