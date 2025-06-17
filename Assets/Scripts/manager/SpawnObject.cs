@@ -1,15 +1,22 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
-public class SpawnObject : MonoBehaviour
+using Utils;
+public class SpawnObject : MonoSingleton<SpawnObject>
 {
-    [SerializeField] private ObjectPool objectPool;
-    [SerializeField] private string pooledObjectId;
+    private string pooledObjectId;
+
+    private ObjectPool objectPool;
 
     private float currentX = 0;
+    void Start()
+    {
+        objectPool = ObjectPool.Instance;
+    }
+
     public void Spawn(string pooledObjectId)
     {
+        this.pooledObjectId = pooledObjectId;
         var go = objectPool.GetObject(pooledObjectId);
         if (go != null)
         {
